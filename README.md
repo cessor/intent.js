@@ -1,6 +1,6 @@
 # ftest
 
-Functional testing for JavaScript.
+Functional testing for Node.js and JavaScript.
 
 ## Samples
 
