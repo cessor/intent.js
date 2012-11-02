@@ -10,25 +10,24 @@ test(div, {
     { in: [ 6, 3 ], out: 2 },
     { in: [ 2, 1 ], out: 2 }
   ],
-  'Dividing by zero': { in: [ 6, 0 ], out: Error }
+  'Dividing by zero': { in: [ 6, 0 ], error: Error }
 });
 
 test(fizzBuzz, {
-  'Divisible by 3 is Fizz': [
-    { in: 3, out: 'Fizz' },
-    { in: 6, out: 'Fizz' },
-    { in: 9, out: 'Fizz' }
+  'Numbers that can be divided by 3 are fizz': [
+    { in : 3, out : 'fizz' },
+    { in : 6, out : 'fizz' }
   ],
-  'Divisible by 5 is Buzz': [
-    { in:  5, out: 'Buzz' },
-    { in: 10, out: 'Buzz' }
+  'Numbers that can be divided by 5 are buzz': [
+    { in :  5, out : 'buzz' },
+    { in : 10, out : 'buzz' }
   ],
-  'Divisible by 3 and 5 is FizzBuzz':
-    { in: 15, out: 'FizzBuzz' },
-  'Divisible neither by 3 nor by 5 is just the number': [
-    { in: 7, out: 7 },
-    { in: 8, out: 8 }
-  ]
+  'Numbers that can be divided by 3 and 5 are fizzbuzz': [
+    { in :  0, out : 'fizzbuzz' },
+    { in : 15, out : 'fizzbuzz' },
+    { in : 30, out : 'fizzbuzz' }
+  ],
+  'Numbers that can\'t be divided': { in : 1, out : 1 }
 });
 
 test(addAsync, {
