@@ -14,3 +14,4 @@ test(div, {
   ],
   'Division by 0 is bad': { in : [ 1, 0 ], error : { message : 'Division by zero' } }
 });
+
