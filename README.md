@@ -46,12 +46,14 @@ Rather than naming something "It should do this and that" or falling into standa
 You will not encounter these terms in your code. When we talk about these things, we use the terms to describe the internals of what is going on:
 
 ```javascript
-test(div, {                   // Intent - What would you want to work?
-  'A calculator devides numbers': [       // Reason - Why is it that this is important? *
-    { in: [ 6, 3 ], out: 2 }, // Goal   - What do you need, so that you are happy?
-    { in: [ 2, 1 ], out: 2 }  // Goal
+test(div, {                   
+  'A calculator devides numbers': [ // Intent - What would you want to work? Why?
+    { in: [ 6, 3 ], out: 2 },       // Goal   - What do you need, so that you are happy?
+    { in: [ 2, 1 ], out: 2 }        // Goal
   ],
-  'Dividing by zero': { in: [ 6, 0 ], out: Error } // Another intent.
+  'Dividing by zero': {             // Another intent
+    in: [ 6, 0 ], out: Error        // Another goal
+  } 
 });
 ```
 * Sure, the reason is pretty lame, but giving a reason for why a calculator needs a division is pretty hard.
