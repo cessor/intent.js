@@ -1,8 +1,14 @@
 # ftest
 
-Functional testing for Node.js and JavaScript.
+Functional testing for Node.js and the browser.
 
-## Samples
+If you have any questions or feedback, feel free to contact us using [@goloroden](https://twitter.com/goloroden) or [@pro_cessor](https://twitter.com/pro_cessor) on Twitter.
+
+## Installation
+
+    $ npm install ftest
+
+## Quick start
 
 ```javascript
 test(div, {
