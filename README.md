@@ -1,4 +1,4 @@
-# ftest
+# intent.js
 
 Functional testing for Node.js and the browser.
 
@@ -6,7 +6,7 @@ If you have any questions or feedback, feel free to contact us using [@goloroden
 
 ## Installation
 
-    $ npm install ftest
+    $ npm install intent.js
 
 ## Quick start
 

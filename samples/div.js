@@ -12,5 +12,5 @@ test(div, {
     { in: [ 17, 2 ], out: 8.5 },
     { in: [ 27, 9 ], out: 3 }
   ],
-  'Division by 0 is bad': { in: [ 1, 0 ], error: { message : 'Divisdion by zero' } }
+  'Division by 0 is bad': { in: [ 1, 0 ], error: { message : 'Division by zero' } }
 });
