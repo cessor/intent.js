@@ -1,8 +1,14 @@
 # ftest
 
-Functional testing for Node.js and JavaScript.
+Functional testing for Node.js and the browser.
 
-## Samples
+If you have any questions or feedback, feel free to contact us using [@goloroden](https://twitter.com/goloroden) or [@pro_cessor](https://twitter.com/pro_cessor) on Twitter.
+
+## Installation
+
+    $ npm install ftest
+
+## Quick start
 
 ```javascript
 test(div, {
@@ -36,6 +42,30 @@ test(addAsync, {
 ```
 
 That's it :-)!
+
+## Vocabulary
+
+We came to the understanding that, there might be something different about the way that we view things here.
+Rather than naming something "It should do this and that" or falling into standard AAA/GivenWhenThen syntax, or calling something a specification or a fixture or something, we tried to make this system all about communication. Our tests are trying to communicate intent. Rather than just saying what happens, we are trying to tell the reader why we think it should be happening. This is why our tests are called "intents". An intent is described by a reason. You want something - so why do you really want it? Each intent is made up of separate goals. You desire to get something done, you would like to achieve something. First you aren't sure whether a goal can be met. Goals can be contradicting with other goals sometimes. However, you wish for all of them to be fulfilled until you are satisfied.
+ 
+You will not encounter these terms in your code. When we talk about these things, we use the terms to describe the internals of what is going on:
+
+```javascript
+test(div, {                   
+  'A calculator devides numbers': [ // Intent - What would you want to work? Why?
+    { in: [ 6, 3 ], out: 2 },       // Goal   - What do you need, so that you are happy?
+    { in: [ 2, 1 ], out: 2 }        // Goal
+  ],
+  'Dividing by zero': {             // Another intent
+    in: [ 6, 0 ], out: Error        // Another goal
+  } 
+});
+```
+*Note: Sure, the reason is pretty lame, but giving a reason for why a calculator needs a division is pretty hard.*
+
+This is one test, with two intents. The first intent is satisfied, when two goals are met. 
+
+It is important to us, that the test runner is nice to you. 
 
 ## License
 
