@@ -10,7 +10,7 @@ If you have any questions or feedback, feel free to contact us using [@goloroden
 
 ## Quick start
 
-See `tests` folder for examples.
+See `samples` folder for sample usage.
 
 ## Vocabulary
 
