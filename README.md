@@ -10,38 +10,7 @@ If you have any questions or feedback, feel free to contact us using [@goloroden
 
 ## Quick start
 
-```javascript
-test(div, {
-  'Dividing numbers': [
-    { in: [ 6, 3 ], out: 2 },
-    { in: [ 2, 1 ], out: 2 }
-  ],
-  'Dividing by zero': { in: [ 6, 0 ], error: Error }
-});
-
-test(fizzBuzz, {
-  'Numbers that can be divided by 3 are fizz': [
-    { in : 3, out : 'fizz' },
-    { in : 6, out : 'fizz' }
-  ],
-  'Numbers that can be divided by 5 are buzz': [
-    { in :  5, out : 'buzz' },
-    { in : 10, out : 'buzz' }
-  ],
-  'Numbers that can be divided by 3 and 5 are fizzbuzz': [
-    { in :  0, out : 'fizzbuzz' },
-    { in : 15, out : 'fizzbuzz' },
-    { in : 30, out : 'fizzbuzz' }
-  ],
-  'Numbers that can\'t be divided': { in : 1, out : 1 }
-});
-
-test(addAsync, {
-  'Adds numbers': { in: [ 2, 3, callback({ in: 5, out: 23 }) ], out: 24 }
-});
-```
-
-That's it :-)!
+See `tests` folder for examples.
 
 ## Vocabulary
 
@@ -66,6 +35,8 @@ test(div, {
 This is one test, with two intents. The first intent is satisfied, when two goals are met. 
 
 It is important to us, that the test runner is nice to you. 
+
+That's it :-)!
 
 ## License
 

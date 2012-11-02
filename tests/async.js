@@ -7,6 +7,6 @@ function addAsync (first, second, callback) {
 }
 
 test(addAsync, {
-  'Adds numbers': { in: [ 2, 3, test.callback({ in: 5, out: 23 }) ], out: 24 },
-  'Callback throws error': { in: [ 2, 3, test.callback({ in: 5, error: new Error('foo') }) ], error: { message: 'foo' } }
+  'Stub': { in: [ 2, 3, function () { return 23; } ], out: 24 },
+  'Mock': { in: [ 2, 3, function (sum) { if(sum !== 5) throw new Error('sum is wrong'); return 23; } ], out: 24 }
 });
