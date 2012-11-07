@@ -1,6 +1,6 @@
 {
   "name": "intent.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Functional testing for Node.js and JavaScript.",
   "author": "Golo Roden <webmaster@goloroden.de>",
   "main": "./lib/index",

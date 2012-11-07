@@ -1,4 +1,4 @@
-var test = require('../lib/index');
+var iAnticipateThat = require('../lib/index');
 
 var fizzBuzz = function (number) {
   if(number % 3 === 0 && number % 5 === 0) {
@@ -13,7 +13,7 @@ var fizzBuzz = function (number) {
   return number;
 };
 
-test(fizzBuzz, {
+iAnticipateThat(fizzBuzz, {
   'Numbers that can be divided by 3 are fizz': [
     { in: 3, out: 'fizz' },
     { in: 6, out: 'fizz' }

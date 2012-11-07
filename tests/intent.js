@@ -1,3 +1,3 @@
-var test = require('../lib/index');
+var iAnticipateThat = require('../lib/index');
 
-test.yourself();
+iAnticipateThat.youTestYourself();

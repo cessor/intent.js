@@ -1,4 +1,4 @@
-var test = require('../lib/index');
+var iAnticipateThat = require('../lib/index');
 
 var div = function (first, second) {
   if(second === 0) {
@@ -7,7 +7,7 @@ var div = function (first, second) {
   return first / second;
 };
 
-test(div, {
+iAnticipateThat(div, {
   'I want to divide numbers': [
     { in: [ 17, 2 ], out: 8.5 },
     { in: [ 27, 9 ], out: 3 }

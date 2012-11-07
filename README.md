@@ -10,33 +10,77 @@ If you have any questions or feedback, feel free to contact us using [@goloroden
 
 ## Quick start
 
-See `samples` folder for sample usage.
-
-## Vocabulary
-
-We came to the understanding that, there might be something different about the way that we view things here.
-Rather than naming something "It should do this and that" or falling into standard AAA/GivenWhenThen syntax, or calling something a specification or a fixture or something, we tried to make this system all about communication. Our tests are trying to communicate intent. Rather than just saying what happens, we are trying to tell the reader why we think it should be happening. This is why our tests are called "intents". An intent is described by a reason. You want something - so why do you really want it? Each intent is made up of separate goals. You desire to get something done, you would like to achieve something. First you aren't sure whether a goal can be met. Goals can be contradicting with other goals sometimes. However, you wish for all of them to be fulfilled until you are satisfied.
- 
-You will not encounter these terms in your code. When we talk about these things, we use the terms to describe the internals of what is going on:
+Basically, using `intent.js` is quite easy. Just add a reference to it within your application:
 
 ```javascript
-test(div, {                   
-  'A calculator devides numbers': [ // Intent - What would you want to work? Why?
-    { in: [ 6, 3 ], out: 2 },       // Goal   - What do you need, so that you are happy?
-    { in: [ 2, 1 ], out: 2 }        // Goal
-  ],
-  'Dividing by zero': {             // Another intent
-    in: [ 6, 0 ], out: Error        // Another goal
-  } 
+var iAnticipateThat = require('intent.js');
+```
+
+### What is your intent?
+
+Before writing your first test, you need to think about what is your *intent*. An intent describes what you want to achieve and the reason why you want to do so.
+
+For example, your first intent for a function `divide` may be that it divides positive numbers. intent.js allows you to express this in your code. Just add the following lines:
+
+```javascript
+iAnticipateThat(divide, {
+  'divides positive numbers': // ...
 });
 ```
-*Note: Sure, the reason is pretty lame, but giving a reason for why a calculator needs a division is pretty hard.*
 
-This is one test, with two intents. The first intent is satisfied, when two goals are met. 
+### What are your goals?
 
-It is important to us, that the test runner is nice to you. 
+The next thing you need is a concrete *goal* that describes what you need so that you are happy and your intent has been satisfied. A goal for intent.js is always given as a tuple that describes - in its most basic form - an input and an output.
 
-That's it :-)!
+When talking about the `divide` function the input may be the numbers `6` and `3`, the output may be `2`. So add this to your intent:
+
+```javascript
+iAnticipateThat(divide, {
+  'divides positive numbers': { in: [ 6, 3 ], out: 2 }
+});
+```
+
+There may be more than one goal for an intent to be satisfied. Example given, you could also want the intent to work with positive decimal numbers. So, go and add a second goal for the intent:
+
+```javascript
+iAnticipateThat(divide, {
+  'divides positive numbers': [
+    { in: [ 6, 3 ], out: 2 },
+    { in: [ 7.5, 3 ], out: 2.5 }
+  ]
+});
+```
+
+### Do you have additional intents?
+
+There may be more than one intent. Example given, you might want the `divide` function to throw an error when trying to divide by zero, which is not defined according to mathematics:
+
+```javascript
+iAnticipateThat(divide, {
+  'divides positive numbers': [
+    { in: [ 6, 3 ], out: 2 },
+    { in: [ 7.5, 3 ], out: 2.5 }
+  ],
+  'fails when dividing by zero': // ...
+});
+```
+
+### So you want to handle errors?
+
+Again, you could specify a goal as before, but this time it's more reasonable to anticipate an *error* than a normal output. So describe the `Error` instance that you anticipate:
+
+```javascript
+iAnticipateThat(divide, {
+  'divides positive numbers': [
+    { in: [ 6, 3 ], out: 2 },
+    { in: [ 7.5, 3 ], out: 2.5 }
+  ],
+  'fails when dividing by zero':
+    { in: [ 1, 0 ], error: { message: 'Division by zero' } }
+});
+```
+
+And basically, that's it :-)!
 
 ## License
 

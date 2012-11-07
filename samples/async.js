@@ -1,4 +1,4 @@
-var test = require('../lib/index');
+var iAnticipateThat = require('../lib/index');
 
 function addAsync (first, second, callback) {
   var sum = first + second;
@@ -6,7 +6,7 @@ function addAsync (first, second, callback) {
   return result + 1;
 }
 
-test(addAsync, {
+iAnticipateThat(addAsync, {
   'Stub': { in: [ 2, 3, function () { return 23; } ], out: 24 },
   'Mock': { in: [ 2, 3, function (sum) { if(sum !== 5) throw new Error('sum is wrong'); return 23; } ], out: 24 }
 });
