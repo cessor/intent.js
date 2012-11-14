@@ -27,49 +27,13 @@ var right = 5;
 var wrong = 10;
 var thisIsWhatIWant = 5;
 
-var callWithRightInput = function (fn) {
-	fn(right);
-};
+var callWithRightInput = function (fn) { fn(right); };
+var callWithWrongInput = function (fn) { fn(wrong); };
 
-var callWithWrongInput = function (fn) {
-	fn(wrong);
-};
+var callIt = function (fn) { return fn(); };
+var anyFunction = function() { return function() { }; };
 
-var callIt = function (fn) {
-	return fn();
-};
-
-var anyFunction = function() {
-	return function() { };
-};
-
-// kill this
-var logArgs = function (args) {
-	for(var a in args){
-		console.log('\t' + args[a]);
-	}
-};
-
-iAnticipateThat(give, {
-	'gives me a function, that returns the input of give' : { in: 5, out: anyFunction }
-});
-
-iAnticipateThat(callIt, {
-	'gives me what I put in as indirect input' : {in: give(5), out: 5}
-});
-
-iAnticipateThat(callWithRightInput, { 
-	'makes the take function happy.': [ 
-		{ in: take(thisIsWhatIWant) } ,
-		{ in: take([1,2,3]) } ,
-	]
-});
-
-iAnticipateThat(callWithWrongInput, { 
-	'makes the take function unhappy.': { in: take(thisIsWhatIWant), error: { message: 'Did not take 5' } }
-});
-
-iAnticipateThat(compare.eq, {
-	'can compare two arrays in a sequence' : { in: [[1,2,3],[1,2,3]], out:true },
-	'can compare two objects' :	{ in: [{m:5},{m:5}], out:true }
-});
+iAnticipateThat(give, { 'gives me a function, that returns the input of give' : { in: 5, out: anyFunction }});
+iAnticipateThat(callIt, { 'gives me what I put in as indirect input' : { in: give(5), out: 5 }});
+iAnticipateThat(callWithRightInput, { 'makes the take function happy.': { in: take(thisIsWhatIWant) }});
+iAnticipateThat(callWithWrongInput, { 'makes the take function unhappy.': { in: take(thisIsWhatIWant), error: { message: 'Did not take 5' }}});
