@@ -1,4 +1,5 @@
 var iAnticipateThat = require('../lib/index');
+var compare = require('compare.js');
 var util = require('util');
 
 var give = function (value) {
@@ -8,16 +9,28 @@ var give = function (value) {
 	return fn;
 }
 
-var receive = function (anticipatedInput) {
-	return function (argument) { 
-		if(argument !== anticipatedInput) {
+var logArgs = function (args) {
+	for(var a in args){
+		console.log('\t' + args[a]);
+	}
+};
+
+var take = function () {
+	var anticipatedInput = arguments;
+	console.log('outer args: ');
+	logArgs(anticipatedInput);
+	return function () { 
+		var ai = arguments;
+		console.log('inner args: ');
+		logArgs(ai);
+		if(ai !== anticipatedInput) {
 			// JH, 12.11.2012 - This should actually use the 'unanticipated' function from the mothership (the index module)
-			throw new Error(util.format('Did not receive %s', anticipatedInput));
+			throw new Error(util.format('Did not take %s', anticipatedInput));
 		}
 	};
 };
 
-module.exports = { 'give' : give, 'receive' : receive };
+module.exports = { 'give' : give, 'take' : take };
 
 var right = 5;
 var wrong = 10;
@@ -40,9 +53,17 @@ iAnticipateThat(callIt, {
 });
 
 iAnticipateThat(callWithRightInput, { 
-	'makes the receive function happy.': { in: receive(thisIsWhatIWant) }
+	'makes the take function happy.': { in: take(thisIsWhatIWant) }
 });  	
 
 iAnticipateThat(callWithWrongInput, { 
-	'makes the receive function unhappy.': { in: receive(thisIsWhatIWant), error: { message: 'Did not receive 5' } }
+	'makes the take function unhappy.': { in: take(thisIsWhatIWant), error: { message: 'Did not take 5' } }
+});
+
+console.log('compare');
+iAnticipateThat(compare.eqs, {
+	'can compare two arrays in a sequence' : [
+		{ in: [[1,2,3],[1,2,3]], out:true },
+		{ in: [{m:5},{m:5}], out:true }
+	]
 });
