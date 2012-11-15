@@ -1,6 +1,7 @@
 var iAnticipateThat = require('../lib/index');
 var compare = require('compare.js');
 var _ = require('underscore');
+var format = require('../lib/format');
 var util = require('util');
 
 var give = function (value) {
@@ -17,7 +18,7 @@ var take = function () {
 		if(compare.eq(actual, anticipated)) {
 			return;
 		}
-		throw new Error(util.format('Did not take %s', anticipated)); // JH, 12.11.2012 - This should actually use the 'unanticipated' function from the mothership (the index module)
+		throw new Error(util.format('Took %s instead of %s.', format(anticipated), format(actual))); // JH, 12.11.2012 - This should actually use the 'unanticipated' function from the mothership (the index module)
 	};
 };
 
@@ -36,4 +37,4 @@ var anyFunction = function() { return function() { }; };
 iAnticipateThat(give, { 'gives me a function, that returns the input of give' : { in: 5, out: anyFunction }});
 iAnticipateThat(callIt, { 'gives me what I put in as indirect input' : { in: give(5), out: 5 }});
 iAnticipateThat(callWithRightInput, { 'makes the take function happy.': { in: take(thisIsWhatIWant) }});
-iAnticipateThat(callWithWrongInput, { 'makes the take function unhappy.': { in: take(thisIsWhatIWant), error: { message: 'Did not take 5' }}});
+iAnticipateThat(callWithWrongInput, { 'makes the take function unhappy.': { in: take(thisIsWhatIWant), error: { message: 'Took [5] instead of [10]' }}});

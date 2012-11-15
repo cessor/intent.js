@@ -1,5 +1,5 @@
 var iAnticipateThat = require('../lib/index');
-var fig = require('../tests/figurant.js')
+var figurant = require('../tests/figurant.js')
 
 // Dependent-On Component
 var thermometer = function (currentTemperature, desiredTemperature) {
@@ -21,7 +21,6 @@ var thermostat = function (desiredTemperature, sensor, thermometer) {
 // 1. Here a stub is required to give indirect input into the system under test
 // 2. Here a mock is can be used to record the indirect outputs of the system under test
 
-
 // What about these? They lay around loosely, is that good?
 var hot = 40;
 var cold = 10;
@@ -35,12 +34,10 @@ iAnticipateThat(thermometer, {
 
 // The thing that I actually want to test has a different set of tests.
 iAnticipateThat(thermostat, {
-	'should increase temperature if it is cold.' : { in: [roomTemperature, fig.give(cold), thermometer], out: 1 },
-	'should decrease temperature if it is hot.' : { in: [roomTemperature, fig.give(hot), thermometer], out: -1 },
-	'should not do anything if temperature ok.' : { in: [roomTemperature, fig.give(roomTemperature), thermometer], out: 0},
-
-	'should not do anything if temperature ok.' : { in: [roomTemperature, fig.give(roomTemperature), thermometer], out: 0},
-
-	'should call the thermostat to find out what to do.' : { in: [roomTemperature, fig.give(cold), fig.take(cold, roomTemperature)], out: 0},
+	'should increase temperature if it is cold.' : { in: [roomTemperature, figurant.give(cold), thermometer], out: 1 },
+	'should decrease temperature if it is hot.' : { in: [roomTemperature, figurant.give(hot), thermometer], out: -1 },
+	'should not do anything if temperature ok.' : { in: [roomTemperature, figurant.give(roomTemperature), thermometer], out: 0},
+	'should not do anything if temperature ok.' : { in: [roomTemperature, figurant.give(roomTemperature), thermometer], out: 0},
+	'should call the thermostat to find out what to do.' : { in: [roomTemperature, figurant.give(cold), figurant.take(cold, roomTemperature)], out: 1}
 });
 
